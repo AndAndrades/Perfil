@@ -1,9 +1,9 @@
 import { useRef, useEffect } from "react";
 import { Renderer, Program, Mesh, Triangle, Color } from "ogl";
 import { logEvent } from "firebase/analytics";
-import { analytics } from "./firebase";
 
 import "./Boton.css";
+import { analytics } from "../../firebase";
 
 const PAD = 20;
 
@@ -97,7 +97,7 @@ const Boton = ({
     const btnRef = useRef(null);
     const fxRef = useRef(null);
     const propsRef = useRef({});
-    
+
     logEvent(analytics, texto);
 
 
