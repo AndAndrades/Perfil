@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import AcidSquares from './components/acidSquare/AcidSquares.component'
-import Boton from './components/boton/boton.component';
 import ParticleText from './components/ParticleText/ParticleText.component'
 import SoftAurora from './components/SoftAurora/SoftAurora.component'
+import Boton from './components/boton/Boton.component';
 
 function App() {
   const [fondoSecundario, setFondoSecundario] = useState(false);
