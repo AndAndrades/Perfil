@@ -1,59 +1,26 @@
-import { useState } from 'react';
-import AcidSquares from './components/acidSquare/AcidSquares.component'
 import ParticleText from './components/ParticleText/ParticleText.component'
-import SoftAurora from './components/SoftAurora/SoftAurora.component'
 import Boton from './components/boton/Boton.component';
+import LiquidEther from './components/LiquidEther/LiquidEther.component';
 
 function App() {
-  const [fondoSecundario, setFondoSecundario] = useState(false);
-  const handlerWallpaperChange = () => {
-    setFondoSecundario(!fondoSecundario);
-  }
   return (
     <div style={{ position: 'relative', width: '100%', minHeight: '100vh' }}>
       <div style={{ position: 'fixed', inset: 0, zIndex: 0, }}>
-        {fondoSecundario ? (
-          <SoftAurora
-            speed={0.6}
-            scale={1.5}
-            brightness={1}
-            color1="#f7f7f7"
-            color2="#e100ff"
-            noiseFrequency={2.5}
-            noiseAmplitude={1}
-            bandHeight={0.5}
-            bandSpread={1}
-            octaveDecay={0.1}
-            layerOffset={0}
-            colorSpeed={1}
-            enableMouseInteraction
-            mouseInfluence={0.25}
-          />) : (
-          <AcidSquares
-            color1="#5227FF"
-            color2="#A855F7"
-            color3="#FFFFFF"
-            detail="medium"
-            speed={0.7}
-            waveDepth={1}
-            zoom={1.3}
-            density={10}
-            glow={1}
-            exposure={2700}
-            spread={0.3}
-            stepSize={0.002}
-            colorShift={0}
-            contrast={1}
-            brightness={1}
-            opacity={1}
-            mouseInteraction
-            mouseStrength={0.1}
-            mouseRadius={0.35}
-            blur={0}
-            grain
-            grainIntensity={0.05}
-          />
-        )}
+        <LiquidEther
+          speed={0.6}
+          scale={1.5}
+          brightness={1}
+          colors={['#5227FF', '#FF9FFC', '#B497CF']}
+          noiseFrequency={2.5}
+          noiseAmplitude={1}
+          bandHeight={0.5}
+          bandSpread={1}
+          octaveDecay={0.1}
+          layerOffset={0}
+          colorSpeed={1}
+          enableMouseInteraction
+          mouseInfluence={0.25}
+        />
       </div>
       <div
         style={{
@@ -73,7 +40,6 @@ function App() {
             alignItems: 'center',
           }}
         >
-          <Boton onClick={() => handlerWallpaperChange()}>Cambiar fondo</Boton>
           <ParticleText
             text="Andrew Andrades"
             particleSize={2.2}
