@@ -2,7 +2,7 @@
 import { useEffect, useRef, useId } from 'react';
 import './GlassSurface.css';
 
-const CristalSuperficie = ({
+const GlassSurface = ({
   children,
   width = 200,
   height = 80,
@@ -193,4 +193,4 @@ const CristalSuperficie = ({
   );
 };
 
-export default CristalSuperficie;
+export default GlassSurface;

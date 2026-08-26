@@ -1,5 +1,4 @@
 import { ContactsFilled, GithubFilled, HomeFilled, LinkedinFilled } from "@ant-design/icons";
-import CristalSuperficie from "../components/cristalSuperficie/cristalSuperficie.component";
 import MainNavBar from "../components/MainNavBar/MainNavBar.component";
 import ParticleText from "../components/ParticleText/ParticleText.component";
 import AcidSquares from "../components/Wallpapers/acidSquare/AcidSquares.component";
@@ -121,14 +120,12 @@ const Inicio = () => {
                         justifyContent: "center",
                     }}
                 >
-                    <CristalSuperficie style={{ width: "100%", maxWidth: "800px", padding: "2rem" }}>
-                        <h2 style={{ fontSize: "2rem", fontWeight: "700", marginBottom: "1rem", color: "#fff" }}>
-                            Sobre mí
-                        </h2>
-                        <p style={{ color: "#e2e8f0", lineHeight: "1.6" }}>
-                            Desarrollador Fullstack apasionado por crear experiencias digitales fluidas, atractivas e interactivas.
-                        </p>
-                    </CristalSuperficie>
+                    <h2 style={{ fontSize: "2rem", fontWeight: "700", marginBottom: "1rem", color: "#fff" }}>
+                        Sobre mí
+                    </h2>
+                    <p style={{ color: "#e2e8f0", lineHeight: "1.6" }}>
+                        Desarrollador Fullstack apasionado por crear experiencias digitales fluidas, atractivas e interactivas.
+                    </p>
                 </section>
             </div>
         </div>

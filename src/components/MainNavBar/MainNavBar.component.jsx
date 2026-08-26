@@ -1,7 +1,7 @@
 import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from 'motion/react';
 import { Children, cloneElement, useEffect, useRef, useState } from 'react';
 import './MainNavBar.css';
-import CristalSuperficie from '../cristalSuperficie/cristalSuperficie.component';
+import GlassSurface from '../GlassSurface/GlassSurface.component';
 
 function DockItem({
   children,
@@ -128,7 +128,7 @@ export default function MainNavBar({
         role="toolbar"
         aria-label="Navigation header"
       >
-        <CristalSuperficie
+        <GlassSurface
           width="auto"
           height={panelHeight + 40}
           borderRadius={99}
@@ -157,7 +157,7 @@ export default function MainNavBar({
               <DockLabel>{item.label}</DockLabel>
             </DockItem>
           ))}
-        </CristalSuperficie>
+        </GlassSurface>
       </motion.nav>
     </div>
   );
