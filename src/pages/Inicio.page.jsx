@@ -1,11 +1,28 @@
-import LiquidEther from "../components/LiquidEther/LiquidEther.component";
+import { ContactsFilled, GithubFilled, HomeFilled, LinkedinFilled } from "@ant-design/icons";
+import CristalSuperficie from "../components/cristalSuperficie/cristalSuperficie.component";
+import MainNavBar from "../components/MainNavBar/MainNavBar.component";
 import ParticleText from "../components/ParticleText/ParticleText.component";
+import AcidSquares from "../components/Wallpapers/acidSquare/AcidSquares.component";
 
 const Inicio = () => {
+    const IrLinkedin = () => {
+        window.location.href = "https://www.linkedin.com/in/andandrades/";
+    };
+    const irGithub = () => {
+        window.location.href = "https://github.com/AndAndrades";
+    };
+
+    const items = [
+        { icon: <HomeFilled size={18} />, label: "Home", onClick: () => alert("Home!") },
+        { icon: <GithubFilled size={18} />, label: "Github", onClick: () => irGithub() },
+        { icon: <LinkedinFilled size={18} />, label: "Linkedin", onClick: () => IrLinkedin() },
+        { icon: <ContactsFilled size={18} />, label: "Contactame", onClick: () => alert("Contactame!") },
+    ];
+
     return (
-        <div style={{ position: 'relative', width: '100%', minHeight: '100vh' }}>
-            <div style={{ position: 'fixed', inset: 0, zIndex: 0, }}>
-                <LiquidEther
+        <div style={{ position: "relative", width: "100%", minHeight: "100vh" }}>
+            <div style={{ position: "fixed", inset: 0, zIndex: 0, pointerEvents: "none" }}>
+                <AcidSquares
                     mouseForce={20}
                     cursorSize={100}
                     isViscous
@@ -13,10 +30,10 @@ const Inicio = () => {
                     iterationsViscous={32}
                     iterationsPoisson={32}
                     dt={0.014}
-                    resolution={.7}
+                    resolution={0.7}
                     isBounce={true}
-                    colors={['#2906b8', '#ea00ff', '#00d9ff']}
-                    className=''
+                    colors={["#2906b8", "#ea00ff", "#00d9ff"]}
+                    className=""
                     autoDemo={true}
                     autoSpeed={0.5}
                     autoIntensity={2.2}
@@ -25,22 +42,51 @@ const Inicio = () => {
                     autoRampDuration={0.6}
                 />
             </div>
+
+            {/* Contenedor Principal */}
             <div
                 style={{
-                    position: 'relative',
+                    position: "relative",
                     zIndex: 1,
-                    width: '100%',
-                    minHeight: '100vh',
+                    width: "100%",
+                    minHeight: "100vh",
                 }}
             >
-                {/* Hero */}
-                <section
+                {/* Navbar Centrada en la parte superior */}
+                <header
                     style={{
-                        width: '100%',
-                        height: '100vh',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
+                        position: "fixed",
+                        top: "1.5rem",
+                        left: 0,
+                        right: 0,
+                        zIndex: 50,
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        padding: "0 1rem",
+                        pointerEvents: "none",
+                    }}
+                >
+                    <div style={{ pointerEvents: "auto" }}>
+                        <MainNavBar
+                            items={items}
+                            panelHeight={30}
+                            baseItemSize={50}
+                            magnification={70}
+                        />
+                    </div>
+                </header>
+
+                {/* Hero Section */}
+                <section
+                    id="inicio"
+                    style={{
+                        width: "100%",
+                        height: "100vh",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        padding: "0 1rem",
                     }}
                 >
                     <ParticleText
@@ -63,14 +109,30 @@ const Inicio = () => {
                     />
                 </section>
 
-                {/* Resto de la página */}
-                <section>
-                    <h2>Sobre mí</h2>
-                    <p>Contenido...</p>
+                {/* Sección Sobre mí */}
+                <section
+                    id="sobre-mi"
+                    style={{
+                        width: "100%",
+                        maxW: "1200px",
+                        margin: "0 auto",
+                        padding: "4rem 1.5rem",
+                        display: "flex",
+                        justifyContent: "center",
+                    }}
+                >
+                    <CristalSuperficie style={{ width: "100%", maxWidth: "800px", padding: "2rem" }}>
+                        <h2 style={{ fontSize: "2rem", fontWeight: "700", marginBottom: "1rem", color: "#fff" }}>
+                            Sobre mí
+                        </h2>
+                        <p style={{ color: "#e2e8f0", lineHeight: "1.6" }}>
+                            Desarrollador Fullstack apasionado por crear experiencias digitales fluidas, atractivas e interactivas.
+                        </p>
+                    </CristalSuperficie>
                 </section>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Inicio;
