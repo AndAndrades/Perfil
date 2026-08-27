@@ -126,10 +126,14 @@ const GlassSurface = ({
     width: typeof width === 'number' ? `${width}px` : width,
     height: typeof height === 'number' ? `${height}px` : height,
     borderRadius: `${borderRadius}px`,
+    backdropFilter: `blur(${blur}px) saturate(${saturation})`,
+    WebkitBackdropFilter: `blur(${blur}px) saturate(${saturation})`,
+    background: `rgba(15, 23, 42, ${backgroundOpacity || 0.45})`,
     '--glass-frost': backgroundOpacity,
     '--glass-saturation': saturation,
     '--filter-id': `url(#${filterId})`
   };
+
 
   return (
     <div
