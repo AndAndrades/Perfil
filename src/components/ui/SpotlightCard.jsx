@@ -7,6 +7,7 @@ export default function SpotlightCard({
   spotlightColor = "rgba(139, 92, 246, 0.16)",
   borderColor = "rgba(167, 139, 250, 0.45)",
   size = 400,
+  style = {},
   ...props
 }) {
   const cardRef = useRef(null);
@@ -39,8 +40,16 @@ export default function SpotlightCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      style={{
+        WebkitBackdropFilter: "blur(20px)",
+        backdropFilter: "blur(20px)",
+        transform: "translateZ(0)",
+        WebkitTransform: "translateZ(0)",
+        willChange: "transform, backdrop-filter",
+        ...style,
+      }}
       className={cn(
-        "relative rounded-3xl border border-white/10 bg-[#0f172a]/35 p-6 md:p-8 backdrop-blur-2xl transition-all duration-300 overflow-hidden group shadow-2xl shadow-black/40",
+        "relative rounded-3xl border border-white/10 bg-[#0f172a]/45 p-6 md:p-8 transition-all duration-300 overflow-hidden group shadow-2xl shadow-black/50",
         className
       )}
       {...props}
@@ -54,7 +63,7 @@ export default function SpotlightCard({
         }}
       />
 
-      {/* Border Spotlight */}
+      {/* Border Spotlight with Corner Highlights */}
       <div
         className="pointer-events-none absolute -inset-px rounded-3xl transition-opacity duration-300"
         style={{

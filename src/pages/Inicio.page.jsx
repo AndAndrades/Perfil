@@ -7,44 +7,40 @@ import Footer from "../components/layout/Footer";
 import LiquidEther from "../components/Wallpapers/LiquidEther/LiquidEther.component";
 
 export default function Inicio() {
-  return (
-    <div className="relative w-full min-h-screen bg-[#090d16] text-slate-100 selection:bg-indigo-600/40 selection:text-white">
-      {/* Background LiquidEther WebGL Fluid Shader with Sleek Slate, Royal Indigo & Violet Glow */}
-      <div className="fixed inset-0 z-0 pointer-events-none opacity-55">
-        <LiquidEther
-          mouseForce={22}
-          cursorSize={110}
-          isViscous={true}
-          viscous={30}
-          iterationsViscous={28}
-          iterationsPoisson={28}
-          dt={0.014}
-          resolution={0.65}
-          isBounce={true}
-          colors={["#181030", "#3730a3", "#6366f1", "#0284c7"]}
-          className="w-full h-full"
-          autoDemo={true}
-          autoSpeed={0.35}
-          autoIntensity={1.8}
-          takeoverDuration={0.25}
-          autoResumeDelay={1200}
-          autoRampDuration={0.6}
-        />
-      </div>
+    return (
+        <div className="relative w-full min-h-screen bg-[#090d16] text-slate-100 selection:bg-indigo-600/40 selection:text-white">
+            <div className="fixed inset-0 z-0 pointer-events-none opacity-55">
+                <LiquidEther
+                    mouseForce={22}
+                    cursorSize={110}
+                    isViscous={true}
+                    viscous={30}
+                    iterationsViscous={28}
+                    iterationsPoisson={28}
+                    dt={0.014}
+                    resolution={0.65}
+                    isBounce={true}
+                    colors={["#181030", "#3730a3", "#6366f1", "#0284c7"]}
+                    className="w-full h-full"
+                    autoDemo={true}
+                    autoSpeed={0.35}
+                    autoIntensity={1.8}
+                    takeoverDuration={0.25}
+                    autoResumeDelay={1200}
+                    autoRampDuration={0.6}
+                />
+            </div>
 
-      {/* Floating Navigation with Crystal GlassSurface */}
-      <Navbar />
+            <Navbar />
 
-      {/* Main Content Layout */}
-      <main className="relative z-10 w-full overflow-hidden">
-        <HeroSection />
-        <ProjectGrid />
-        <SkillsSection />
-        <ExperienceSection />
-      </main>
+            <main className="relative z-10 w-full overflow-hidden">
+                <HeroSection />
+                <ProjectGrid />
+                <SkillsSection />
+                <ExperienceSection />
+            </main>
 
-      {/* Interactive Footer & Clipboard Feedback */}
-      <Footer />
-    </div>
-  );
+            <Footer />
+        </div>
+    );
 }
