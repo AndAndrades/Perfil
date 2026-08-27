@@ -57,6 +57,7 @@ const CERTIFICATIONS = [
     type: "Comunicación fluida y escritura técnica",
   },
 ];
+useSectionTracking("experiencia");
 
 export default function ExperienceSection() {
   return (

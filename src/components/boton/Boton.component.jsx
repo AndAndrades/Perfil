@@ -98,8 +98,10 @@ const Boton = ({
     const fxRef = useRef(null);
     const propsRef = useRef({});
 
-    logEvent(analytics, texto);
-
+    const onClickHandler = () => {
+        logEvent(analytics, texto);
+        onClick();
+    }
 
     useEffect(() => {
         propsRef.current = {
@@ -261,7 +263,7 @@ const Boton = ({
             ref={btnRef}
             type={type}
             disabled={disabled}
-            onClick={onClick}
+            onClick={onClickHandler}
             className={`specular-button specular-button--${size}${className ? ` ${className}` : ""}`}
             style={{
                 "--sb-radius": `${radius}px`,

@@ -80,6 +80,7 @@ const ARCHITECTURE_PILLARS = [
 
 export default function SkillsSection() {
   const [hoveredSkill, setHoveredSkill] = useState(null);
+  useSectionTracking("habilidades");
 
   return (
     <section id="habilidades" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">

@@ -6,8 +6,11 @@ import {
 import ParticleText from "../ParticleText/ParticleText.component";
 import GlassSurface from "../GlassSurface/GlassSurface.component";
 import ClientMarquee from "../ui/ClientMarquee";
+import { useSectionTracking } from "../../hooks/Query/Firebase/useSectionTracking";
 
 export default function HeroSection() {
+  useSectionTracking("inicio");
+
   return (
     <section
       id="inicio"

@@ -23,7 +23,7 @@ const PROJECTS = [
     title: "Plataforma de Tesorería & Operaciones Financieras",
     category: "Fullstack",
     featured: true,
-    size: "col-span-1 md:col-span-2 lg:col-span-2 row-span-2",
+    size: "col-span-1 md:col-span-2 lg:col-span-1 row-span-1",
     description:
       "Sistema web empresarial end-to-end para la gestión crítica de tesorería, cartera, estados de deuda y procesamiento de giros bancarios masivos en Coval Servicios Financieros.",
     metrics: [
@@ -107,6 +107,7 @@ const PROJECTS = [
     accent: "from-violet-500/20 to-cyan-500/10",
   },
 ];
+useSectionTracking("proyectos");
 
 const CATEGORIES = ["Todos", "Fullstack", "Backend & Cloud", "Bases de Datos", "UI/UX & WebGL"];
 

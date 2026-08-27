@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getAnalytics, logEvent } from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -13,4 +13,21 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-export const analytics = getAnalytics(app);
+const analytics = getAnalytics(app);
+
+if (localStorage.getItem('analytics_consent') === 'granted') {
+  analytics.setAnalyticsCollectionEnabled(true);
+} else {
+  analytics.setAnalyticsCollectionEnabled(false);
+}
+
+export { analytics };
+
+export const trackSectionView = (sectionName) => {
+  if (!analytics) return;
+
+  logEvent(analytics, "screen_view", {
+    firebase_screen: sectionName,
+    firebase_screen_class: "Portfolio",
+  });
+};
