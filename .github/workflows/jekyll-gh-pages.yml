@@ -45,7 +45,7 @@ jobs:
 
   deploy:
     environment:
-      name: master
+      name: Master
       url: ${{ steps.deployment.outputs.page_url }}
 
     runs-on: ubuntu-latest
