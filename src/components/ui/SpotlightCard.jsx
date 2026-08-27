@@ -4,8 +4,8 @@ import { cn } from "../../utils/cn";
 export default function SpotlightCard({
   children,
   className = "",
-  spotlightColor = "rgba(99, 102, 241, 0.18)",
-  borderColor = "rgba(129, 140, 248, 0.5)",
+  spotlightColor = "rgba(139, 92, 246, 0.16)",
+  borderColor = "rgba(167, 139, 250, 0.45)",
   size = 400,
   ...props
 }) {
@@ -40,7 +40,7 @@ export default function SpotlightCard({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={cn(
-        "relative rounded-2xl border border-white/10 bg-[#0f172a]/70 p-6 md:p-8 backdrop-blur-xl transition-all duration-300 overflow-hidden group shadow-xl",
+        "relative rounded-3xl border border-white/10 bg-[#0f172a]/35 p-6 md:p-8 backdrop-blur-2xl transition-all duration-300 overflow-hidden group shadow-2xl shadow-black/40",
         className
       )}
       {...props}
@@ -56,7 +56,7 @@ export default function SpotlightCard({
 
       {/* Border Spotlight */}
       <div
-        className="pointer-events-none absolute -inset-px rounded-2xl transition-opacity duration-300"
+        className="pointer-events-none absolute -inset-px rounded-3xl transition-opacity duration-300"
         style={{
           opacity,
           background: `radial-gradient(${size * 0.7}px circle at ${position.x}px ${position.y}px, ${borderColor}, transparent 80%)`,

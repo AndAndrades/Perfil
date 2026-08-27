@@ -4,7 +4,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import ParticleText from "../ParticleText/ParticleText.component";
-
+import GlassSurface from "../GlassSurface/GlassSurface.component";
 import ClientMarquee from "../ui/ClientMarquee";
 
 export default function HeroSection() {
@@ -15,17 +15,29 @@ export default function HeroSection() {
     >
       {/* Hero Content */}
       <div className="flex-1 flex flex-col items-center justify-center text-center max-w-4xl mx-auto space-y-6 z-10">
-        {/* Current Role Badge */}
+        {/* Role Badge with Transparent GlassSurface */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-indigo-500/30 bg-[#0f172a]/80 backdrop-blur-md shadow-lg shadow-indigo-500/10"
+          className="inline-block"
         >
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-          <span className="text-xs font-semibold text-slate-200">
-            Desarrollador Full Stack • Coval Servicios Financieros
-          </span>
+          <GlassSurface
+            width="auto"
+            height="auto"
+            borderRadius={9999}
+            blur={14}
+            brightness={25}
+            opacity={0.65}
+            className="border border-white/10 shadow-lg shadow-black/30"
+          >
+            <div className="flex items-center gap-2.5 px-4 py-1.5">
+              <span className="w-2 h-2 rounded-full bg-indigo-400 animate-ping" />
+              <span className="text-xs font-semibold text-slate-200">
+                Desarrollador Full Stack • Coval Servicios Financieros
+              </span>
+            </div>
+          </GlassSurface>
         </motion.div>
 
         {/* Dynamic Particle Name Title */}
@@ -55,7 +67,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.15 }}
-          className="text-sm sm:text-base font-mono text-cyan-400 tracking-wide uppercase font-semibold"
+          className="text-sm sm:text-base font-mono text-indigo-300 tracking-wide uppercase font-semibold glow-text-indigo"
         >
           Ingeniero en Informática • Java 17 & React 19 Specialist
         </motion.div>
@@ -79,7 +91,7 @@ export default function HeroSection() {
         >
           <a
             href="#proyectos"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-semibold text-sm shadow-xl shadow-indigo-600/30 transition-all duration-300 hover:scale-105"
+            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-indigo-600 via-violet-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-semibold text-sm shadow-xl shadow-indigo-600/30 transition-all duration-300 hover:scale-105"
           >
             <span>Ver Experiencia & Proyectos</span>
             <ArrowRight className="w-4 h-4" />
@@ -87,39 +99,45 @@ export default function HeroSection() {
 
           <a
             href="#contacto"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-white/10 bg-[#0f172a]/70 hover:bg-white/10 text-white font-semibold text-sm backdrop-blur-md transition-all duration-300 hover:border-indigo-500/40"
+            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-white/10 bg-[#0f172a]/40 hover:bg-white/10 text-white font-semibold text-sm backdrop-blur-xl transition-all duration-300 hover:border-indigo-500/40"
           >
             <Sparkles className="w-4 h-4 text-cyan-400" />
             <span>Contactar</span>
           </a>
         </motion.div>
 
-        {/* Core Stats Grid */}
+        {/* Stats Grid with Transparent GlassSurface */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.5 }}
           className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-10 w-full max-w-3xl"
         >
-          <div className="p-4 rounded-2xl border border-white/5 bg-[#0f172a]/50 backdrop-blur-sm">
-            <span className="text-2xl sm:text-3xl font-extrabold text-white bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent block">
-              Fintech & E2E
-            </span>
-            <span className="text-xs text-slate-400">Tesorería & Giros Bancarios</span>
+          <div className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-black/40">
+            <GlassSurface width="100%" height="100%" borderRadius={24} blur={16} brightness={25} opacity={0.65} className="p-5">
+              <span className="text-2xl sm:text-3xl font-extrabold text-white bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent block">
+                Fintech & E2E
+              </span>
+              <span className="text-xs text-slate-300">Tesorería & Giros Bancarios</span>
+            </GlassSurface>
           </div>
 
-          <div className="p-4 rounded-2xl border border-white/5 bg-[#0f172a]/50 backdrop-blur-sm">
-            <span className="text-2xl sm:text-3xl font-extrabold text-white bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent block">
-              Java 17 + React
-            </span>
-            <span className="text-xs text-slate-400">Spring Boot & React Query</span>
+          <div className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-black/40">
+            <GlassSurface width="100%" height="100%" borderRadius={24} blur={16} brightness={25} opacity={0.65} className="p-5">
+              <span className="text-2xl sm:text-3xl font-extrabold text-white bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent block">
+                Java 17 + React
+              </span>
+              <span className="text-xs text-slate-300">Spring Boot & React Query</span>
+            </GlassSurface>
           </div>
 
-          <div className="p-4 rounded-2xl border border-white/5 bg-[#0f172a]/50 backdrop-blur-sm col-span-2 sm:col-span-1">
-            <span className="text-2xl sm:text-3xl font-extrabold text-white bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent block">
-              High-Volume DB
-            </span>
-            <span className="text-xs text-slate-400">SQL Server & PostgreSQL</span>
+          <div className="rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-black/40 col-span-2 sm:col-span-1">
+            <GlassSurface width="100%" height="100%" borderRadius={24} blur={16} brightness={25} opacity={0.65} className="p-5">
+              <span className="text-2xl sm:text-3xl font-extrabold text-white bg-gradient-to-r from-violet-400 to-cyan-400 bg-clip-text text-transparent block">
+                High-Volume DB
+              </span>
+              <span className="text-xs text-slate-300">SQL Server & PostgreSQL</span>
+            </GlassSurface>
           </div>
         </motion.div>
       </div>

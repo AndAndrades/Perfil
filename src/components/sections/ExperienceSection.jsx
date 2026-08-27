@@ -1,7 +1,6 @@
 import { Briefcase, Calendar, MapPin, Award, CheckCircle2, GraduationCap, Languages } from "lucide-react";
 import SpotlightCard from "../ui/SpotlightCard";
 
-
 const EXPERIENCES = [
   {
     role: "Desarrollador Full Stack",
@@ -74,7 +73,7 @@ export default function ExperienceSection() {
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white">
           Experiencia Profesional en <span className="bg-gradient-to-r from-violet-400 via-indigo-400 to-cyan-400 bg-clip-text text-transparent">Sistemas Financieros</span>
         </h2>
-        <p className="max-w-2xl mx-auto text-slate-400 text-base sm:text-lg">
+        <p className="max-w-2xl mx-auto text-slate-300 text-base sm:text-lg">
           Especializado en plataformas transaccionales de alto volumen, arquitecturas backend con Java 17 / Spring Boot y frontends reactivos de alto rendimiento.
         </p>
       </div>
@@ -96,23 +95,23 @@ export default function ExperienceSection() {
                   </div>
                   <span className="text-sm font-semibold text-cyan-400">{exp.company}</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs font-mono text-slate-400 bg-white/5 px-3 py-1.5 rounded-full border border-white/10 w-fit">
+                <div className="flex items-center gap-2 text-xs font-mono text-slate-300 bg-white/5 px-3 py-1.5 rounded-full border border-white/10 w-fit">
                   <Calendar className="w-3.5 h-3.5 text-indigo-400" />
                   <span>{exp.period}</span>
                 </div>
               </div>
 
-              <div className="flex items-center gap-1.5 text-xs text-slate-500 mb-4">
+              <div className="flex items-center gap-1.5 text-xs text-slate-400 mb-4">
                 <MapPin className="w-3.5 h-3.5 text-slate-400" />
                 <span>{exp.location}</span>
               </div>
 
-              <p className="text-slate-300 text-sm leading-relaxed mb-4">{exp.description}</p>
+              <p className="text-slate-200 text-sm leading-relaxed mb-4">{exp.description}</p>
 
               {/* Achievements */}
               <div className="space-y-2 mb-6">
                 {exp.achievements.map((ach, i) => (
-                  <div key={i} className="flex items-start gap-2 text-xs sm:text-sm text-slate-400">
+                  <div key={i} className="flex items-start gap-2 text-xs sm:text-sm text-slate-300">
                     <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
                     <span className="leading-snug">{ach}</span>
                   </div>
@@ -124,7 +123,7 @@ export default function ExperienceSection() {
                 {exp.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-indigo-950/40 border border-indigo-500/20 text-indigo-300"
+                    className="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-indigo-950/50 border border-indigo-500/25 text-indigo-300"
                   >
                     {skill}
                   </span>
@@ -147,13 +146,13 @@ export default function ExperienceSection() {
               </div>
 
               {EDUCATION.map((edu, i) => (
-                <div key={i} className="p-4 rounded-xl bg-[#090d16]/70 border border-white/5 space-y-2">
+                <div key={i} className="p-4 rounded-2xl bg-[#090d16]/70 border border-white/5 space-y-2">
                   <div className="flex justify-between items-start">
                     <h4 className="text-sm font-bold text-white">{edu.title}</h4>
                     <span className="text-xs font-mono text-indigo-400">{edu.period}</span>
                   </div>
                   <p className="text-xs font-semibold text-cyan-400">{edu.institution}</p>
-                  <p className="text-xs text-slate-400 leading-relaxed">{edu.highlight}</p>
+                  <p className="text-xs text-slate-300 leading-relaxed">{edu.highlight}</p>
                 </div>
               ))}
             </div>
@@ -171,17 +170,17 @@ export default function ExperienceSection() {
 
               <div className="space-y-3 mb-4">
                 {CERTIFICATIONS.map((cert, i) => (
-                  <div key={i} className="p-3 rounded-xl bg-[#090d16]/70 border border-white/5">
+                  <div key={i} className="p-3 rounded-2xl bg-[#090d16]/70 border border-white/5">
                     <h4 className="text-xs font-bold text-white mb-0.5">{cert.name}</h4>
                     <div className="flex items-center justify-between text-[11px] text-slate-400">
                       <span className="text-indigo-300">{cert.issuer}</span>
-                      <span className="text-slate-500">{cert.type}</span>
+                      <span className="text-slate-400">{cert.type}</span>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="p-3.5 rounded-xl bg-gradient-to-br from-indigo-950/40 to-cyan-950/20 border border-indigo-500/20">
+              <div className="p-3.5 rounded-2xl bg-gradient-to-br from-indigo-950/40 via-purple-950/30 to-cyan-950/20 border border-indigo-500/20">
                 <div className="flex items-center gap-2 text-xs font-semibold text-cyan-300 mb-1">
                   <Languages className="w-3.5 h-3.5" />
                   <span>Idiomas</span>

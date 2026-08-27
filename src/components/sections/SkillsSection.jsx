@@ -9,7 +9,6 @@ import {
   Shield,
   Gauge,
 } from "lucide-react";
-
 import SpotlightCard from "../ui/SpotlightCard";
 import { cn } from "../../utils/cn";
 
@@ -18,7 +17,7 @@ const SKILL_CATEGORIES = [
     id: "backend",
     title: "Backend & Arquitectura Empresarial",
     icon: Server,
-    color: "from-indigo-500 to-violet-500",
+    color: "from-indigo-500 via-violet-500 to-purple-500",
     badgeColor: "bg-indigo-500/10 text-indigo-400 border-indigo-500/30",
     skills: [
       { name: "Java 17 & Spring Boot 3", level: 95, tag: "Especialista" },
@@ -33,7 +32,7 @@ const SKILL_CATEGORIES = [
     id: "frontend",
     title: "Frontend Reactivo & UI/UX",
     icon: Code,
-    color: "from-cyan-500 to-blue-500",
+    color: "from-cyan-500 via-blue-500 to-indigo-500",
     badgeColor: "bg-cyan-500/10 text-cyan-400 border-cyan-500/30",
     skills: [
       { name: "React 19 & React Query (TanStack)", level: 95, tag: "Especialista" },
@@ -48,7 +47,7 @@ const SKILL_CATEGORIES = [
     id: "databases-devops",
     title: "Bases de Datos & DevOps Cloud",
     icon: Database,
-    color: "from-emerald-500 to-teal-500",
+    color: "from-emerald-400 via-teal-500 to-indigo-500",
     badgeColor: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30",
     skills: [
       { name: "SQL Server & PostgreSQL (Stored Procedures/CTEs)", level: 95, tag: "Especialista" },
@@ -85,7 +84,7 @@ export default function SkillsSection() {
   return (
     <section id="habilidades" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Background Glow */}
-      <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl pointer-events-none" />
 
       {/* Header */}
       <div className="text-center mb-16 space-y-4">
@@ -96,7 +95,7 @@ export default function SkillsSection() {
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white">
           Habilidades Técnicas & <span className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-violet-400 bg-clip-text text-transparent">Especialización</span>
         </h2>
-        <p className="max-w-2xl mx-auto text-slate-400 text-base sm:text-lg">
+        <p className="max-w-2xl mx-auto text-slate-300 text-base sm:text-lg">
           Dominio integral en sistemas empresariales de alto volumen: backend robusto en Java 17 / Spring Boot, interfaces reactivas modernas y tuning de bases de datos relacionales.
         </p>
       </div>
@@ -131,13 +130,13 @@ export default function SkillsSection() {
                         <span className="font-medium text-slate-300 group-hover/item:text-white transition-colors">
                           {skill.name}
                         </span>
-                        <span className="text-xs text-slate-500 font-mono group-hover/item:text-cyan-400 transition-colors">
+                        <span className="text-xs text-slate-400 font-mono group-hover/item:text-cyan-400 transition-colors">
                           {skill.tag}
                         </span>
                       </div>
 
                       {/* Meter bar */}
-                      <div className="w-full h-1.5 bg-slate-800/80 rounded-full overflow-hidden">
+                      <div className="w-full h-1.5 bg-[#090d16]/80 rounded-full overflow-hidden border border-white/5">
                         <motion.div
                           initial={{ width: 0 }}
                           whileInView={{ width: `${skill.level}%` }}
@@ -146,7 +145,7 @@ export default function SkillsSection() {
                           className={cn(
                             "h-full rounded-full bg-gradient-to-r transition-all duration-300",
                             category.color,
-                            hoveredSkill === skill.name ? "brightness-125 shadow-sm shadow-cyan-400/50" : "opacity-80"
+                            hoveredSkill === skill.name ? "brightness-125 shadow-sm shadow-indigo-400/60" : "opacity-85"
                           )}
                         />
                       </div>
@@ -166,14 +165,14 @@ export default function SkillsSection() {
           return (
             <div
               key={i}
-              className="p-5 rounded-2xl border border-white/5 bg-[#0f172a]/40 backdrop-blur-sm flex items-start gap-4 transition-all duration-300 hover:border-indigo-500/30 hover:bg-[#0f172a]/60"
+              className="p-5 rounded-3xl border border-white/5 bg-[#0f172a]/30 backdrop-blur-xl flex items-start gap-4 transition-all duration-300 hover:border-indigo-500/40 hover:bg-[#0f172a]/50"
             >
               <div className="p-2 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 shrink-0">
                 <Icon className="w-5 h-5" />
               </div>
               <div>
                 <h4 className="text-sm font-bold text-white mb-1">{pillar.title}</h4>
-                <p className="text-xs text-slate-400 leading-relaxed">{pillar.description}</p>
+                <p className="text-xs text-slate-300 leading-relaxed">{pillar.description}</p>
               </div>
             </div>
           );

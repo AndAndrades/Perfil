@@ -52,7 +52,7 @@ const PROJECTS = [
       "Capa de servicios e integraciones bancarias con autenticación segura JWT, enrutamiento mediante Kong/Konga y reintentos automáticos.",
     metrics: [
       { label: "Latencia Media", value: "<60ms", icon: Zap, color: "text-amber-400" },
-      { label: "Seguridad", value: "JWT + RBAC", icon: ShieldCheck, color: "text-rose-400" },
+      { label: "Seguridad", value: "JWT + RBAC", icon: ShieldCheck, color: "text-indigo-400" },
     ],
     techStack: ["Java 17", "Kong Gateway", "JWT", "Feign", "GitLab CI"],
     highlights: [
@@ -61,7 +61,7 @@ const PROJECTS = [
     ],
     github: "https://github.com/AndAndrades",
     live: "https://andandrades.github.io/perfil/",
-    accent: "from-amber-500/20 to-rose-500/10",
+    accent: "from-indigo-500/20 to-violet-500/10",
   },
   {
     id: "database-tuning-engine",
@@ -86,25 +86,25 @@ const PROJECTS = [
   },
   {
     id: "webgl-shaders-portfolio",
-    title: "WebGL Shaders & Modern UI Suite",
+    title: "WebGL Shaders & Liquid Fluid Suite",
     category: "UI/UX & WebGL",
     featured: false,
     size: "col-span-1 md:col-span-2 lg:col-span-3 row-span-1",
     description:
-      "Ecosistema visual interactivo de alto rendimiento basado en shaders GLSL, partículas en Canvas, efectos spotlight y Tailwind CSS v4.",
+      "Ecosistema visual interactivo de alto rendimiento basado en shaders GLSL, fluidos LiquidEther en Three.js, efectos GlassSurface y Tailwind CSS v4.",
     metrics: [
-      { label: "Rendimiento", value: "60 FPS", icon: Sparkles, color: "text-purple-400" },
-      { label: "Arquitectura", value: "React 19", icon: TrendingUp, color: "text-indigo-400" },
-      { label: "Carga", value: "Vite 8 Ultra-fast", icon: Activity, color: "text-blue-400" },
+      { label: "Rendimiento", value: "60 FPS", icon: Sparkles, color: "text-violet-400" },
+      { label: "Arquitectura", value: "React 19", icon: TrendingUp, color: "text-cyan-400" },
+      { label: "Carga", value: "Vite 8 Ultra-fast", icon: Activity, color: "text-indigo-400" },
     ],
-    techStack: ["React 19", "Tailwind CSS v4", "OGL", "GLSL Shaders", "Framer Motion"],
+    techStack: ["React 19", "Tailwind CSS v4", "Three.js", "GLSL Shaders", "Framer Motion"],
     highlights: [
       "Renderizado acelerado por GPU sin bloqueo del hilo principal de React.",
       "Componentes modulares de diseño Dark Mode con microinteracciones y spotlight cursor.",
     ],
     github: "https://github.com/AndAndrades/perfil",
     live: "https://andandrades.github.io/perfil/",
-    accent: "from-purple-500/20 to-blue-500/10",
+    accent: "from-violet-500/20 to-cyan-500/10",
   },
 ];
 
@@ -133,7 +133,7 @@ export default function ProjectGrid() {
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white">
           Proyectos Empresariales & <span className="bg-gradient-to-r from-cyan-400 via-indigo-400 to-violet-400 bg-clip-text text-transparent">Métricas Reales</span>
         </h2>
-        <p className="max-w-2xl mx-auto text-slate-400 text-base sm:text-lg">
+        <p className="max-w-2xl mx-auto text-slate-300 text-base sm:text-lg">
           Sistemas financieros y plataformas web diseñadas con altos estándares de disponibilidad, seguridad y rendimiento.
         </p>
 
@@ -147,7 +147,7 @@ export default function ProjectGrid() {
                 "px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-300 cursor-pointer border",
                 activeCategory === category
                   ? "bg-indigo-600/30 border-indigo-500 text-white shadow-lg shadow-indigo-500/20"
-                  : "bg-[#0f172a]/50 border-white/5 text-slate-400 hover:text-slate-200 hover:border-white/20"
+                  : "bg-[#0f172a]/40 border-white/5 text-slate-300 hover:text-white hover:border-indigo-500/30"
               )}
             >
               {category}
@@ -173,7 +173,7 @@ export default function ProjectGrid() {
                 <div>
                   {/* Top Badge & Actions */}
                   <div className="flex items-center justify-between gap-2 mb-4">
-                    <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-slate-300">
+                    <span className="text-xs font-semibold px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-slate-200">
                       {project.category}
                     </span>
                     <div className="flex items-center gap-2">
@@ -181,7 +181,7 @@ export default function ProjectGrid() {
                         href={project.github}
                         target="_blank"
                         rel="noreferrer"
-                        className="p-2 rounded-lg bg-white/5 hover:bg-white/15 text-slate-400 hover:text-white transition-colors"
+                        className="p-2 rounded-lg bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white transition-colors"
                         title="Ver repositorio"
                       >
                         <GithubIcon className="w-4 h-4" />
@@ -190,7 +190,7 @@ export default function ProjectGrid() {
                         href={project.live}
                         target="_blank"
                         rel="noreferrer"
-                        className="p-2 rounded-lg bg-white/5 hover:bg-white/15 text-slate-400 hover:text-white transition-colors"
+                        className="p-2 rounded-lg bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white transition-colors"
                         title="Ver demostración"
                       >
                         <ExternalLink className="w-4 h-4" />
@@ -202,7 +202,7 @@ export default function ProjectGrid() {
                   <h3 className="text-xl sm:text-2xl font-bold text-white mb-2.5 group-hover:text-cyan-300 transition-colors flex items-center gap-2">
                     {project.title}
                   </h3>
-                  <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                  <p className="text-slate-300 text-sm leading-relaxed mb-6">
                     {project.description}
                   </p>
 
@@ -213,7 +213,7 @@ export default function ProjectGrid() {
                       return (
                         <div
                           key={i}
-                          className="p-3 rounded-xl bg-[#090d16]/70 border border-white/5 flex flex-col items-start gap-1"
+                          className="p-3 rounded-2xl bg-[#090d16]/70 border border-white/5 flex flex-col items-start gap-1"
                         >
                           <div className="flex items-center gap-1.5 text-xs text-slate-400">
                             <Icon className={cn("w-3.5 h-3.5", metric.color)} />
@@ -234,7 +234,7 @@ export default function ProjectGrid() {
                     {project.techStack.map((tech) => (
                       <span
                         key={tech}
-                        className="text-[11px] font-medium px-2 py-0.5 rounded-full bg-indigo-950/40 border border-indigo-500/20 text-indigo-300"
+                        className="text-[11px] font-medium px-2 py-0.5 rounded-full bg-indigo-950/50 border border-indigo-500/25 text-indigo-300"
                       >
                         {tech}
                       </span>
@@ -255,7 +255,7 @@ export default function ProjectGrid() {
         </AnimatePresence>
       </motion.div>
 
-      {/* Modal Detail View */}
+      {/* Modal Detail View with Glassmorphism */}
       <AnimatePresence>
         {selectedProject && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
@@ -263,12 +263,12 @@ export default function ProjectGrid() {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-2xl rounded-2xl border border-indigo-500/30 bg-[#0f172a] p-6 sm:p-8 shadow-2xl overflow-hidden"
+              className="relative w-full max-w-2xl rounded-3xl border border-indigo-500/30 bg-[#0f172a]/90 backdrop-blur-2xl p-6 sm:p-8 shadow-2xl shadow-black/80 overflow-hidden"
             >
               {/* Close Button */}
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-5 right-5 p-2 rounded-full bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-colors cursor-pointer"
+                className="absolute top-5 right-5 p-2 rounded-full bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -278,7 +278,7 @@ export default function ProjectGrid() {
               </span>
 
               <h3 className="text-2xl font-bold text-white mb-3">{selectedProject.title}</h3>
-              <p className="text-slate-300 text-sm leading-relaxed mb-6">
+              <p className="text-slate-200 text-sm leading-relaxed mb-6">
                 {selectedProject.description}
               </p>
 
@@ -288,7 +288,7 @@ export default function ProjectGrid() {
               </h4>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6">
                 {selectedProject.metrics.map((metric, i) => (
-                  <div key={i} className="p-3 rounded-xl bg-[#090d16] border border-white/10">
+                  <div key={i} className="p-3 rounded-2xl bg-[#090d16]/80 border border-white/10">
                     <span className="text-xs text-slate-400 block">{metric.label}</span>
                     <span className={cn("text-lg font-bold", metric.color)}>{metric.value}</span>
                   </div>
@@ -301,7 +301,7 @@ export default function ProjectGrid() {
               </h4>
               <ul className="space-y-2 mb-6">
                 {selectedProject.highlights.map((h, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
+                  <li key={i} className="flex items-start gap-2 text-sm text-slate-200">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                     <span>{h}</span>
                   </li>
@@ -335,7 +335,7 @@ export default function ProjectGrid() {
                   href={selectedProject.live}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold shadow-lg shadow-indigo-600/30 transition-colors"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold shadow-lg shadow-indigo-600/30 transition-all"
                 >
                   <ExternalLink className="w-4 h-4" />
                   Ver Demo
