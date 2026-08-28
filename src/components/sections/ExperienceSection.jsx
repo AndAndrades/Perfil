@@ -1,5 +1,6 @@
 import { Briefcase, Calendar, MapPin, Award, CheckCircle2, GraduationCap, Languages } from "lucide-react";
 import SpotlightCard from "../ui/SpotlightCard";
+import { useSectionTracking } from "../../hooks/Query/Firebase/useSectionTracking";
 
 const EXPERIENCES = [
   {
@@ -57,9 +58,10 @@ const CERTIFICATIONS = [
     type: "Comunicación fluida y escritura técnica",
   },
 ];
-useSectionTracking("experiencia");
 
 export default function ExperienceSection() {
+
+  useSectionTracking("experiencia");
   return (
     <section id="experiencia" className="relative py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Glow background */}

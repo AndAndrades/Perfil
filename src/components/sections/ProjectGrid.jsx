@@ -16,6 +16,7 @@ import {
 import { GithubIcon } from "../ui/Icons";
 import SpotlightCard from "../ui/SpotlightCard";
 import { cn } from "../../utils/cn";
+import { useSectionTracking } from "../../hooks/Query/Firebase/useSectionTracking";
 
 const PROJECTS = [
   {
@@ -107,7 +108,6 @@ const PROJECTS = [
     accent: "from-violet-500/20 to-cyan-500/10",
   },
 ];
-useSectionTracking("proyectos");
 
 const CATEGORIES = ["Todos", "Fullstack", "Backend & Cloud", "Bases de Datos", "UI/UX & WebGL"];
 
@@ -115,6 +115,7 @@ export default function ProjectGrid() {
   const [activeCategory, setActiveCategory] = useState("Todos");
   const [selectedProject, setSelectedProject] = useState(null);
 
+  useSectionTracking("experiencia");
   const filteredProjects =
     activeCategory === "Todos"
       ? PROJECTS

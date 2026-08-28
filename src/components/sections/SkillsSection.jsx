@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import SpotlightCard from "../ui/SpotlightCard";
 import { cn } from "../../utils/cn";
+import { useSectionTracking } from "../../hooks/Query/Firebase/useSectionTracking";
 
 const SKILL_CATEGORIES = [
   {

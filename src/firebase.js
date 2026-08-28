@@ -15,13 +15,6 @@ const app = initializeApp(firebaseConfig);
 
 const analytics = getAnalytics(app);
 
-if (localStorage.getItem('analytics_consent') === 'granted') {
-  analytics.setAnalyticsCollectionEnabled(true);
-} else {
-  analytics.setAnalyticsCollectionEnabled(false);
-}
-
-export { analytics };
 
 export const trackSectionView = (sectionName) => {
   if (!analytics) return;
@@ -31,3 +24,5 @@ export const trackSectionView = (sectionName) => {
     firebase_screen_class: "Portfolio",
   });
 };
+
+export { analytics };
