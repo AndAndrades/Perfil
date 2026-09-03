@@ -10,7 +10,7 @@ const CvButton = ({ className = "hidden lg:inline-flex items-center gap-1.5 px-3
     };
     return (
         <a
-            href="/CV_Andrew_Andrades.pdf"
+            href={`${import.meta.env.VITE_BASE_URL}CV_Andrew_Andrades.pdf`}
             download="CV_Andrew_Andrades.pdf"
             onClick={handleDownloadCV}
             className={className}
