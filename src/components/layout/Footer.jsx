@@ -1,22 +1,15 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Copy,
-  Check,
-  Mail,
-  ArrowUp,
-  MapPin,
-  Send,
-  Download,
-} from "lucide-react";
+import { Copy, Check, Mail, ArrowUp, MapPin, Send } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "../ui/Icons";
 import { cn } from "../../utils/cn";
 import { useAnalytics } from "../../hooks/Query/Firebase/useAnalytics";
+import CvButton from "../boton/CvButton.component";
 
 export default function Footer() {
   const [copied, setCopied] = useState(false);
   const email = "andrewandradesg@gmail.com";
-  const { trackLinkedinClick, trackEmailClick, trackCvDownload, trackSectionView } = useAnalytics();
+  const { trackLinkedinClick, trackEmailClick, trackSectionView } = useAnalytics();
 
   const handleCopyEmail = async () => {
     try {
@@ -108,16 +101,9 @@ export default function Footer() {
             </a>
 
             {/* Descargar CV Button */}
-            <a
-              href="public/CV_Andrew_Andrades.pdf"
-              download="CV_Andrew_Andrades.pdf"
-              onClick={trackCvDownload}
+            <CvButton
               className="flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl border border-cyan-500/40 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 text-sm font-semibold transition-all duration-300 w-full sm:w-auto"
-              title="Descargar CV"
-            >
-              <Download className="w-4 h-4 text-cyan-400" />
-              <span>CV PDF</span>
-            </a>
+            />
           </div>
         </div>
 

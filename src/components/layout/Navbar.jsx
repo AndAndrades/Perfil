@@ -1,20 +1,11 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Code2,
-  Layers,
-  Cpu,
-  Briefcase,
-  Mail,
-  Menu,
-  X,
-  Sparkles,
-  Download,
-} from "lucide-react";
+import { Code2, Layers, Cpu, Briefcase, Mail, Menu, X, Sparkles } from "lucide-react";
 import GlassSurface from "../GlassSurface/GlassSurface.component";
 import { GithubIcon, LinkedinIcon } from "../ui/Icons";
 import { cn } from "../../utils/cn";
 import { useAnalytics } from "../../hooks/Query/Firebase/useAnalytics";
+import CvButton from "../boton/CvButton.component";
 
 const NAV_LINKS = [
   { name: "Inicio", href: "#inicio", icon: Code2 },
@@ -28,7 +19,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("inicio");
-  const { trackLinkedinClick, trackCvDownload, trackSectionView } = useAnalytics();
+  const { trackLinkedinClick, trackSectionView } = useAnalytics();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,10 +44,6 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const handleDownloadCV = () => {
-    trackCvDownload();
-  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center py-4 px-4 pointer-events-none transition-all duration-300">
@@ -130,17 +117,7 @@ export default function Navbar() {
                 <LinkedinIcon className="w-4 h-4" />
               </a>
 
-              {/* Descargar CV Button */}
-              <a
-                href="public/CV_Andrew_Andrades.pdf"
-                download="CV_Andrew_Andrades.pdf"
-                onClick={handleDownloadCV}
-                className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-indigo-400/30 bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300 text-xs font-medium transition-all duration-200"
-                title="Descargar Currículum PDF"
-              >
-                <Download className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Descargar CV</span>
-              </a>
+              <CvButton />
 
               <a
                 href="#contacto"
@@ -188,18 +165,7 @@ export default function Navbar() {
               </a>
             ))}
             <div className="pt-2 border-t border-white/10 flex flex-col gap-2">
-              <a
-                href="/CV_Andrew_Andrades.pdf"
-                download="CV_Andrew_Andrades.pdf"
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  handleDownloadCV();
-                }}
-                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-indigo-500/40 bg-indigo-600/20 text-indigo-300 text-sm font-semibold hover:bg-indigo-600/30 transition-colors"
-              >
-                <Download className="w-4 h-4 text-cyan-400" />
-                <span>Descargar CV (PDF)</span>
-              </a>
+              <CvButton />
             </div>
           </motion.div>
         )}

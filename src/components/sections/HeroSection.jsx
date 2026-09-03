@@ -1,23 +1,20 @@
 import { useEffect } from "react";
 import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  Sparkles,
-  Download,
-} from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import ParticleText from "../ParticleText/ParticleText.component";
 import GlassSurface from "../GlassSurface/GlassSurface.component";
 import ClientMarquee from "../ui/ClientMarquee";
 import { useSectionTracking } from "../../hooks/Query/Firebase/useSectionTracking";
 import { useAnalytics } from "../../hooks/Query/Firebase/useAnalytics";
+import CvButton from "../boton/CvButton.component";
 
 export default function HeroSection() {
   useSectionTracking("inicio");
-  const { trackVisit, trackCvDownload, trackSectionView } = useAnalytics();
+  const { trackVisit, trackSectionView } = useAnalytics();
 
   useEffect(() => {
     trackVisit("inicio");
-  }, []);
+  }, [trackVisit]);
 
   return (
     <section
@@ -109,17 +106,9 @@ export default function HeroSection() {
             <span>Ver Experiencia & Proyectos</span>
             <ArrowRight className="w-4 h-4" />
           </a>
-
-          {/* Descargar CV Button (Glassmorphic) */}
-          <a
-            href="public/CV_Andrew_Andrades.pdf"
-            download="CV_Andrew_Andrades.pdf"
-            onClick={trackCvDownload}
+          <CvButton
             className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-cyan-500/40 bg-gradient-to-r from-cyan-500/10 via-indigo-500/10 to-violet-500/10 hover:bg-cyan-500/20 text-white font-semibold text-sm backdrop-blur-xl shadow-lg shadow-cyan-500/10 transition-all duration-300 hover:scale-105 hover:border-cyan-400"
-          >
-            <Download className="w-4 h-4 text-cyan-400" />
-            <span>Descargar CV</span>
-          </a>
+          />
 
           {/* Contactar */}
           <a
