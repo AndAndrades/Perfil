@@ -1,15 +1,23 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
   Sparkles,
+  Download,
 } from "lucide-react";
 import ParticleText from "../ParticleText/ParticleText.component";
 import GlassSurface from "../GlassSurface/GlassSurface.component";
 import ClientMarquee from "../ui/ClientMarquee";
 import { useSectionTracking } from "../../hooks/Query/Firebase/useSectionTracking";
+import { useAnalytics } from "../../hooks/Query/Firebase/useAnalytics";
 
 export default function HeroSection() {
   useSectionTracking("inicio");
+  const { trackVisit, trackCvDownload, trackSectionView } = useAnalytics();
+
+  useEffect(() => {
+    trackVisit("inicio");
+  }, []);
 
   return (
     <section
@@ -35,7 +43,7 @@ export default function HeroSection() {
             className="border border-white/10 shadow-lg shadow-black/30"
           >
             <div className="flex items-center gap-2.5 px-4 py-1.5">
-              <span className="w-2 h-2 rounded-full bg-indigo-400 animate-ping" />
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-ping" />
               <span className="text-xs font-semibold text-slate-200">
                 Desarrollador Full Stack • Coval Servicios Financieros
               </span>
@@ -92,16 +100,31 @@ export default function HeroSection() {
           transition={{ duration: 0.6, delay: 0.35 }}
           className="flex flex-wrap items-center justify-center gap-4 pt-4"
         >
+          {/* Primary CTA */}
           <a
             href="#proyectos"
+            onClick={() => trackSectionView("proyectos")}
             className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-gradient-to-r from-indigo-600 via-violet-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-semibold text-sm shadow-xl shadow-indigo-600/30 transition-all duration-300 hover:scale-105"
           >
             <span>Ver Experiencia & Proyectos</span>
             <ArrowRight className="w-4 h-4" />
           </a>
 
+          {/* Descargar CV Button (Glassmorphic) */}
+          <a
+            href="public/CV_Andrew_Andrades.pdf"
+            download="CV_Andrew_Andrades.pdf"
+            onClick={trackCvDownload}
+            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-cyan-500/40 bg-gradient-to-r from-cyan-500/10 via-indigo-500/10 to-violet-500/10 hover:bg-cyan-500/20 text-white font-semibold text-sm backdrop-blur-xl shadow-lg shadow-cyan-500/10 transition-all duration-300 hover:scale-105 hover:border-cyan-400"
+          >
+            <Download className="w-4 h-4 text-cyan-400" />
+            <span>Descargar CV</span>
+          </a>
+
+          {/* Contactar */}
           <a
             href="#contacto"
+            onClick={() => trackSectionView("contacto")}
             className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-white/10 bg-[#0f172a]/40 hover:bg-white/10 text-white font-semibold text-sm backdrop-blur-xl transition-all duration-300 hover:border-indigo-500/40"
           >
             <Sparkles className="w-4 h-4 text-cyan-400" />

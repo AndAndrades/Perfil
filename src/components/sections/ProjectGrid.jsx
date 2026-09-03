@@ -17,6 +17,7 @@ import { GithubIcon } from "../ui/Icons";
 import SpotlightCard from "../ui/SpotlightCard";
 import { cn } from "../../utils/cn";
 import { useSectionTracking } from "../../hooks/Query/Firebase/useSectionTracking";
+import { useAnalytics } from "../../hooks/Query/Firebase/useAnalytics";
 
 const PROJECTS = [
   {
@@ -115,7 +116,14 @@ export default function ProjectGrid() {
   const [activeCategory, setActiveCategory] = useState("Todos");
   const [selectedProject, setSelectedProject] = useState(null);
 
-  useSectionTracking("experiencia");
+  useSectionTracking("proyectos");
+  const { trackProjectView, trackProjectLinkClick } = useAnalytics();
+
+  const handleOpenProjectDetails = (project) => {
+    setSelectedProject(project);
+    trackProjectView(project.title);
+  };
+
   const filteredProjects =
     activeCategory === "Todos"
       ? PROJECTS
@@ -183,6 +191,7 @@ export default function ProjectGrid() {
                         href={project.github}
                         target="_blank"
                         rel="noreferrer"
+                        onClick={() => trackProjectLinkClick(project.title, "GitHub")}
                         className="p-2 rounded-lg bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white transition-colors"
                         title="Ver repositorio"
                       >
@@ -192,6 +201,7 @@ export default function ProjectGrid() {
                         href={project.live}
                         target="_blank"
                         rel="noreferrer"
+                        onClick={() => trackProjectLinkClick(project.title, "Demo")}
                         className="p-2 rounded-lg bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white transition-colors"
                         title="Ver demostración"
                       >
@@ -244,7 +254,7 @@ export default function ProjectGrid() {
                   </div>
 
                   <button
-                    onClick={() => setSelectedProject(project)}
+                    onClick={() => handleOpenProjectDetails(project)}
                     className="inline-flex items-center gap-1 text-xs font-semibold text-cyan-400 hover:text-cyan-300 transition-colors cursor-pointer ml-auto"
                   >
                     Ver detalles
@@ -265,7 +275,7 @@ export default function ProjectGrid() {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-2xl rounded-3xl border border-indigo-500/30 bg-[#0f172a]/90 backdrop-blur-2xl p-6 sm:p-8 shadow-2xl shadow-black/80 overflow-hidden"
+              className="relative w-full max-w-2xl rounded-3xl border border-indigo-500/30 bg-[#0f172a]/95 backdrop-blur-2xl p-6 sm:p-8 shadow-2xl shadow-black/80 overflow-hidden"
             >
               {/* Close Button */}
               <button
@@ -328,6 +338,7 @@ export default function ProjectGrid() {
                   href={selectedProject.github}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => trackProjectLinkClick(selectedProject.title, "GitHub")}
                   className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-sm font-semibold transition-colors"
                 >
                   <GithubIcon className="w-4 h-4" />
@@ -337,6 +348,7 @@ export default function ProjectGrid() {
                   href={selectedProject.live}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => trackProjectLinkClick(selectedProject.title, "Demo")}
                   className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold shadow-lg shadow-indigo-600/30 transition-all"
                 >
                   <ExternalLink className="w-4 h-4" />

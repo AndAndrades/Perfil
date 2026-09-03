@@ -1,0 +1,18 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow public to log visit entries (create only), prevent modification or mass read
+    match /portfolio_visits/{visitId} {
+      allow create: if request.resource.data.keys().hasAll(['session_id', 'event_type'])
+                    && request.resource.data.session_id is string;
+      allow read, update, delete: if false;
+    }
+    
+    // Admin devices registration for FCM tokens
+    match /admin_tokens/{tokenId} {
+      allow create, update, read: if true;
+      allow delete: if true;
+    }
+  }
+}

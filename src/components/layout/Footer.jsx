@@ -7,22 +7,30 @@ import {
   ArrowUp,
   MapPin,
   Send,
+  Download,
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "../ui/Icons";
 import { cn } from "../../utils/cn";
+import { useAnalytics } from "../../hooks/Query/Firebase/useAnalytics";
 
 export default function Footer() {
   const [copied, setCopied] = useState(false);
   const email = "andrewandradesg@gmail.com";
+  const { trackLinkedinClick, trackEmailClick, trackCvDownload, trackSectionView } = useAnalytics();
 
   const handleCopyEmail = async () => {
     try {
       await navigator.clipboard.writeText(email);
       setCopied(true);
+      trackEmailClick("copy");
       setTimeout(() => setCopied(false), 2500);
     } catch (err) {
       console.error("Failed to copy email", err);
     }
+  };
+
+  const handleMailtoClick = () => {
+    trackEmailClick("mailto");
   };
 
   const scrollToTop = () => {
@@ -50,7 +58,7 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Interactive Copy Email & Mailto buttons */}
+          {/* Interactive Copy Email, Mailto & CV buttons */}
           <div className="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
             {/* Copy Button */}
             <button
@@ -92,10 +100,23 @@ export default function Footer() {
             {/* Direct Mailto */}
             <a
               href={`mailto:${email}`}
+              onClick={handleMailtoClick}
               className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-gradient-to-r from-indigo-600 via-violet-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white text-sm font-semibold shadow-lg shadow-indigo-600/30 transition-all duration-300 w-full sm:w-auto hover:scale-105"
             >
               <Send className="w-4 h-4" />
               <span>Enviar mensaje</span>
+            </a>
+
+            {/* Descargar CV Button */}
+            <a
+              href="public/CV_Andrew_Andrades.pdf"
+              download="CV_Andrew_Andrades.pdf"
+              onClick={trackCvDownload}
+              className="flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl border border-cyan-500/40 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 text-sm font-semibold transition-all duration-300 w-full sm:w-auto"
+              title="Descargar CV"
+            >
+              <Download className="w-4 h-4 text-cyan-400" />
+              <span>CV PDF</span>
             </a>
           </div>
         </div>
@@ -124,22 +145,38 @@ export default function Footer() {
             <h5 className="text-xs font-bold uppercase tracking-wider text-slate-200">Navegación</h5>
             <ul className="space-y-2 text-sm text-slate-300">
               <li>
-                <a href="#inicio" className="hover:text-cyan-400 transition-colors">
+                <a
+                  href="#inicio"
+                  onClick={() => trackSectionView("inicio")}
+                  className="hover:text-cyan-400 transition-colors"
+                >
                   Inicio
                 </a>
               </li>
               <li>
-                <a href="#proyectos" className="hover:text-cyan-400 transition-colors">
+                <a
+                  href="#proyectos"
+                  onClick={() => trackSectionView("proyectos")}
+                  className="hover:text-cyan-400 transition-colors"
+                >
                   Proyectos & Métricas
                 </a>
               </li>
               <li>
-                <a href="#habilidades" className="hover:text-cyan-400 transition-colors">
+                <a
+                  href="#habilidades"
+                  onClick={() => trackSectionView("habilidades")}
+                  className="hover:text-cyan-400 transition-colors"
+                >
                   Habilidades & Stack
                 </a>
               </li>
               <li>
-                <a href="#experiencia" className="hover:text-cyan-400 transition-colors">
+                <a
+                  href="#experiencia"
+                  onClick={() => trackSectionView("experiencia")}
+                  className="hover:text-cyan-400 transition-colors"
+                >
                   Trayectoria
                 </a>
               </li>
@@ -154,6 +191,7 @@ export default function Footer() {
                 href="https://www.linkedin.com/in/andandrades/"
                 target="_blank"
                 rel="noreferrer"
+                onClick={trackLinkedinClick}
                 className="p-3 rounded-xl bg-white/5 border border-white/10 hover:border-indigo-500/40 hover:bg-white/10 text-slate-200 hover:text-white transition-all duration-200 hover:scale-105"
                 title="LinkedIn"
               >
@@ -170,6 +208,7 @@ export default function Footer() {
               </a>
               <a
                 href={`mailto:${email}`}
+                onClick={handleMailtoClick}
                 className="p-3 rounded-xl bg-white/5 border border-white/10 hover:border-indigo-500/40 hover:bg-white/10 text-slate-200 hover:text-white transition-all duration-200 hover:scale-105"
                 title="Email"
               >

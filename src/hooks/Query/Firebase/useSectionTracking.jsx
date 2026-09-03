@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { trackSectionView } from "../../../firebase";
+import { analyticsService } from "../../../services/analyticsService";
 
-export const useSectionTracking = (sectionName, threshold = 0.5) => {
+export const useSectionTracking = (sectionName, threshold = 0.4) => {
   useEffect(() => {
     const section = document.getElementById(sectionName);
 
@@ -10,7 +10,7 @@ export const useSectionTracking = (sectionName, threshold = 0.5) => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          trackSectionView(sectionName);
+          analyticsService.trackSectionView(sectionName);
         }
       },
       {

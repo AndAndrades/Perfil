@@ -9,10 +9,12 @@ import {
   Menu,
   X,
   Sparkles,
+  Download,
 } from "lucide-react";
 import GlassSurface from "../GlassSurface/GlassSurface.component";
 import { GithubIcon, LinkedinIcon } from "../ui/Icons";
 import { cn } from "../../utils/cn";
+import { useAnalytics } from "../../hooks/Query/Firebase/useAnalytics";
 
 const NAV_LINKS = [
   { name: "Inicio", href: "#inicio", icon: Code2 },
@@ -26,6 +28,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("inicio");
+  const { trackLinkedinClick, trackCvDownload, trackSectionView } = useAnalytics();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,6 +54,10 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleDownloadCV = () => {
+    trackCvDownload();
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center py-4 px-4 pointer-events-none transition-all duration-300">
       <div className={cn("pointer-events-auto transition-all duration-300", scrolled && "scale-95")}>
@@ -60,14 +67,15 @@ export default function Navbar() {
           borderRadius={9999}
           blur={16}
           brightness={30}
-          opacity={0.7}
-          className="border border-white/10 shadow-2xl shadow-black/40"
+          opacity={0.75}
+          className="border border-white/15 shadow-2xl shadow-black/40 backdrop-blur-2xl"
         >
-          <nav className="flex items-center justify-between gap-4 px-3 sm:px-5 py-1.5">
+          <nav className="flex items-center justify-between gap-3 sm:gap-4 px-3 sm:px-5 py-1.5">
             {/* Brand / Logo */}
             <a
               href="#inicio"
-              className="flex items-center gap-2 text-sm font-bold text-white hover:text-indigo-400 transition-colors group mr-2"
+              onClick={() => trackSectionView("inicio")}
+              className="flex items-center gap-2 text-sm font-bold text-white hover:text-indigo-400 transition-colors group mr-1"
             >
               <span className="w-7 h-7 rounded-lg bg-gradient-to-tr from-indigo-600 via-violet-600 to-cyan-500 flex items-center justify-center text-white text-xs font-mono font-bold shadow-md shadow-indigo-600/40 group-hover:scale-105 transition-transform">
                 AA
@@ -85,6 +93,7 @@ export default function Navbar() {
                   <li key={link.name}>
                     <a
                       href={link.href}
+                      onClick={() => trackSectionView(link.href.replace("#", ""))}
                       className={cn(
                         "px-3.5 py-1.5 rounded-full font-medium transition-all duration-200 block",
                         isActive
@@ -99,7 +108,7 @@ export default function Navbar() {
               })}
             </ul>
 
-            {/* Social / Contact Actions */}
+            {/* Social & Action Buttons */}
             <div className="flex items-center gap-1.5">
               <a
                 href="https://github.com/AndAndrades"
@@ -114,14 +123,28 @@ export default function Navbar() {
                 href="https://www.linkedin.com/in/andandrades/"
                 target="_blank"
                 rel="noreferrer"
+                onClick={trackLinkedinClick}
                 className="p-2 rounded-full text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
                 title="LinkedIn"
               >
                 <LinkedinIcon className="w-4 h-4" />
               </a>
 
+              {/* Descargar CV Button */}
+              <a
+                href="public/CV_Andrew_Andrades.pdf"
+                download="CV_Andrew_Andrades.pdf"
+                onClick={handleDownloadCV}
+                className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-indigo-400/30 bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300 text-xs font-medium transition-all duration-200"
+                title="Descargar Currículum PDF"
+              >
+                <Download className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Descargar CV</span>
+              </a>
+
               <a
                 href="#contacto"
+                onClick={() => trackSectionView("contacto")}
                 className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-indigo-600 via-violet-600 to-cyan-600 text-white text-xs font-semibold hover:opacity-90 transition-opacity shadow-md shadow-indigo-600/30"
               >
                 <Sparkles className="w-3.5 h-3.5" />
@@ -148,19 +171,36 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
-            className="pointer-events-auto absolute top-20 left-4 right-4 md:hidden rounded-2xl border border-white/10 bg-[#090d16]/95 backdrop-blur-2xl p-4 shadow-2xl space-y-2 z-50"
+            className="pointer-events-auto absolute top-20 left-4 right-4 md:hidden rounded-2xl border border-white/15 bg-[#090d16]/95 backdrop-blur-2xl p-4 shadow-2xl space-y-2 z-50"
           >
             {NAV_LINKS.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  trackSectionView(link.href.replace("#", ""));
+                }}
                 className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-200 hover:bg-white/10 hover:text-indigo-300 transition-colors"
               >
                 <link.icon className="w-4 h-4 text-indigo-400" />
                 <span>{link.name}</span>
               </a>
             ))}
+            <div className="pt-2 border-t border-white/10 flex flex-col gap-2">
+              <a
+                href="/CV_Andrew_Andrades.pdf"
+                download="CV_Andrew_Andrades.pdf"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  handleDownloadCV();
+                }}
+                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-indigo-500/40 bg-indigo-600/20 text-indigo-300 text-sm font-semibold hover:bg-indigo-600/30 transition-colors"
+              >
+                <Download className="w-4 h-4 text-cyan-400" />
+                <span>Descargar CV (PDF)</span>
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

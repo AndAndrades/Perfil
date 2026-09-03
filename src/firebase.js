@@ -1,5 +1,7 @@
-import { initializeApp } from "firebase/app";
-import { getAnalytics, logEvent } from "firebase/analytics";
+import { initializeApp, getApps, getApp } from "firebase/app";
+import { getAnalytics, isSupported as isAnalyticsSupported } from "firebase/analytics";
+import { getFirestore } from "firebase/firestore";
+import { getMessaging, isSupported as isMessagingSupported } from "firebase/messaging";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -11,18 +13,55 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
-const app = initializeApp(firebaseConfig);
+const isConfigValid = Boolean(firebaseConfig.apiKey && firebaseConfig.projectId);
 
-const analytics = getAnalytics(app);
+let app = null;
+let analytics = null;
+let db = null;
+let messaging = null;
 
+if (isConfigValid) {
+  try {
+    app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+    
+    // Firestore setup
+    try {
+      db = getFirestore(app);
+    } catch (e) {
+      console.warn("Firebase Firestore could not be initialized:", e);
+    }
+
+    // Analytics setup
+    isAnalyticsSupported()
+      .then((supported) => {
+        if (supported && app) {
+          analytics = getAnalytics(app);
+        }
+      })
+      .catch((e) => console.warn("Firebase Analytics not supported:", e));
+
+    // Messaging setup (FCM)
+    if (typeof window !== "undefined" && "serviceWorker" in navigator) {
+      isMessagingSupported()
+        .then((supported) => {
+          if (supported && app) {
+            messaging = getMessaging(app);
+          }
+        })
+        .catch((e) => console.warn("Firebase Messaging not supported:", e));
+    }
+  } catch (error) {
+    console.warn("Firebase initialization skipped or failed:", error);
+  }
+} else {
+  console.info("Firebase credentials not configured yet. Analytics & push notifications running in fallback mode.");
+}
 
 export const trackSectionView = (sectionName) => {
-  if (!analytics) return;
-
-  logEvent(analytics, "screen_view", {
-    firebase_screen: sectionName,
-    firebase_screen_class: "Portfolio",
-  });
+  // Maintained for backwards compatibility; real calls routed through analyticsService
+  import("./services/analyticsService").then((module) => {
+    module.analyticsService.trackSectionView(sectionName);
+  }).catch(() => {});
 };
 
-export { analytics };
+export { app, analytics, db, messaging, firebaseConfig };
